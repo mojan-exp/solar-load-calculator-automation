@@ -1,0 +1,8 @@
+2026-05-09 03:13:21,109 - SolarLoadCalculator.Extractor - ERROR - Error extracting from image: tesseract is not installed or it's not in your PATH. See README file for more information.
+2026-05-09 03:13:28,912 - SolarLoadCalculator.ExcelWriter - ERROR - Error filling Excel template: name 're' is not defined
+2026-05-09 03:13:50,979 - SolarLoadCalculator.Extractor - ERROR - Error extracting from image: tesseract is not installed or it's not in your PATH. See README file for more information.
+2026-05-09 03:13:55,203 - SolarLoadCalculator.ExcelWriter - ERROR - Error filling Excel template: name 're' is not defined
+2026-05-09 03:14:04,873 - SolarLoadCalculator.Extractor - ERROR - Error extracting from image: tesseract is not installed or it's not in your PATH. See README file for more information.
+2026-05-09 03:14:18,529 - SolarLoadCalculator.ExcelWriter - ERROR - Error filling Excel template: name 're' is not defined
+2026-05-09 03:17:32,933 - SolarLoadCalculator.Extractor - ERROR - Error extracting from image: tesseract is not installed or it's not in your PATH. See README file for more information.
+2026-05-09 03:17:37,849 - SolarLoadCalculator.ExcelWriter - INFO - Excel file saved to data/outputs\Solar_Load_20260509_031737.xlsx

@@ -1,5 +1,6 @@
 import openpyxl
 import os
+import re
 import logging
 from datetime import datetime
 
@@ -27,6 +28,16 @@ class ExcelWriter:
                 return row
         return 9  # Default to January if unknown
 
+    def _to_float(self, val):
+        """Safely convert value to float."""
+        try:
+            # Remove any non-numeric characters except decimal point
+            if isinstance(val, str):
+                val = re.sub(r'[^\d.]', '', val)
+            return float(val) if val else 0.0
+        except (ValueError, TypeError):
+            return 0.0
+
     def fill_template(self, data, output_path, is_second_meter=False):
         """Fill extracted data into the Excel template."""
         try:
@@ -36,25 +47,27 @@ class ExcelWriter:
             # Basic info mapping
             if is_second_meter:
                 sheet['H1'] = data.get("consumer_name", "")
-                sheet['H2'] = data.get("consumer_number", "")
-                sheet['H3'] = float(data.get("fixed_charges", 0) or 0)
-                sheet['H4'] = float(data.get("sanction_load", 0) or 0)
+                sheet['H2'] = str(data.get("consumer_number", "")) # Keep as string
+                sheet['H2'].number_format = '@' # Force text format
+                sheet['H3'] = self._to_float(data.get("fixed_charges", 0))
+                sheet['H4'] = self._to_float(data.get("sanction_load", 0))
                 sheet['H5'] = data.get("connection_type", "")
             else:
                 sheet['D1'] = data.get("consumer_name", "")
-                sheet['D2'] = data.get("consumer_number", "")
-                sheet['D3'] = float(data.get("fixed_charges", 0) or 0)
-                sheet['D4'] = float(data.get("sanction_load", 0) or 0)
+                sheet['D2'] = str(data.get("consumer_number", "")) # Keep as string
+                sheet['D2'].number_format = '@' # Force text format
+                sheet['D3'] = self._to_float(data.get("fixed_charges", 0))
+                sheet['D4'] = self._to_float(data.get("sanction_load", 0))
                 sheet['D5'] = data.get("connection_type", "")
             
             # Monthly data mapping
             month_row = self.get_month_row(data.get("billing_month", ""))
             if is_second_meter:
-                sheet[f'H{month_row}'] = float(data.get("units_consumed", 0) or 0)
-                sheet[f'I{month_row}'] = float(data.get("bill_amount", 0) or 0)
+                sheet[f'H{month_row}'] = self._to_float(data.get("units_consumed", 0))
+                sheet[f'I{month_row}'] = self._to_float(data.get("bill_amount", 0))
             else:
-                sheet[f'D{month_row}'] = float(data.get("units_consumed", 0) or 0)
-                sheet[f'E{month_row}'] = float(data.get("bill_amount", 0) or 0)
+                sheet[f'D{month_row}'] = self._to_float(data.get("units_consumed", 0))
+                sheet[f'E{month_row}'] = self._to_float(data.get("bill_amount", 0))
             
             wb.save(output_path)
             logger.info(f"Excel file saved to {output_path}")
