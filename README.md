@@ -4,18 +4,12 @@
 Solar Load Calculator is an AI-powered automation system designed for **Energybae** to streamline the solar system sizing process. It automatically extracts key data from electricity bills (PDF/Images) and populates a specialized Excel template, saving time and reducing manual errors.
 
 ## Features
-- **Hybrid OCR Pipeline**: Combines direct PDF text extraction with Tesseract/EasyOCR fallback for scanned images/PDFs.
+- **Hybrid OCR Pipeline**: Combines direct PDF text extraction with Tesseract OCR for scanned images/PDFs.
 - **Automated Data Extraction**: Extracts Consumer Name, Number, Billing Month, Units, Sanction Load, Tariff, and Bill Amount using robust Regex patterns.
 - **Excel Automation**: Populates an existing Excel template while preserving formulas and formatting.
-<<<<<<< HEAD
-- **Streamlit UI**: Simple, user-friendly interface for uploading bills, verifying extracted data, and downloading results.
-- **Error Handling**: Gracefully handles corrupted files, OCR failures, and missing fields with demo data fallback.
-- **Demo Mode**: When OCR fails, provides sample data to demonstrate the complete workflow.
-=======
 - **Streamlit UI**: Simple, user-friendly interface for uploading bills, verifying extracted data, and downloading results. Includes a clean design with "Advanced Settings" tucked away.
 - **Local Testing Suite**: Includes a dedicated test script to verify extraction locally before deploying.
 - **Robust Excel Formatting**: Ensures consumer numbers are stored as text (avoiding scientific notation) and handles unit conversion safely.
->>>>>>> 841b271 (V0.03)
 
 ## Tech Stack
 - **Language**: Python 3.11+
@@ -53,11 +47,10 @@ solar_load_calculator/
    cd solar_load_calculator
    ```
 
-2. **Install Tesseract OCR (Optional)**:
+2. **Install Tesseract OCR**:
    - **Windows**: Download and install from [UB-Mannheim](https://github.com/UB-Mannheim/tesseract/wiki).
    - **Linux**: `sudo apt install tesseract-ocr`
    - **Mac**: `brew install tesseract`
-   - **Note**: If Tesseract is not available, the app will use EasyOCR as fallback, though it may be slower on first use.
 
 3. **Install Dependencies**:
    ```bash
