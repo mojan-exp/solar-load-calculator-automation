@@ -1,0 +1,11 @@
+streamlit
+pytesseract
+pdfplumber
+pymupdf
+openpyxl
+pandas
+opencv-python
+python-dotenv
+pillow
+numpy
+altair
