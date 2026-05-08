@@ -1,11 +1,16 @@
 import streamlit as st
 import os
+import sys
 import pandas as pd
+import tempfile
+from PIL import Image
+
+# Fix for Streamlit Cloud imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from extractor import BillExtractor
 from excel_writer import ExcelWriter
 from utils import logger, ensure_directories, get_timestamp
-import tempfile
-from PIL import Image
 
 # Page configuration
 st.set_page_config(

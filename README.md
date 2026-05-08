@@ -60,6 +60,12 @@ solar_load_calculator/
    - Create a `.env` file or use the provided one.
    - If Tesseract is not in your system PATH, specify it in the sidebar of the app or in `.env`.
 
+## Streamlit Cloud Deployment
+This project is configured for easy deployment on Streamlit Cloud:
+- **requirements.txt**: Uses `opencv-python-headless` to avoid missing library errors.
+- **packages.txt**: Automatically installs Tesseract OCR and required system libraries.
+- **Imports**: `main.py` includes a path fix for consistent module discovery on cloud environments.
+
 ## How to Use
 
 1. **Run the Application**:

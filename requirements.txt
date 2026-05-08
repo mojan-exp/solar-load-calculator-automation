@@ -4,7 +4,7 @@ pdfplumber
 pymupdf
 openpyxl
 pandas
-opencv-python
+opencv-python-headless
 python-dotenv
 pillow
 numpy
