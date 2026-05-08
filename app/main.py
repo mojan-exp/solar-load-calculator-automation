@@ -67,10 +67,18 @@ def main():
                         text = extractor.extract_text_from_image(Image.open(tmp_path))
                     
                     data = extractor.extract_bill_data(text)
+                    
+                    # Check if data extraction succeeded or if we're using mock data
+                    if all(not v or v == "0" for v in data.values() if v != "fixed_charges"):
+                        st.warning("⚠️ OCR extraction failed. Using demo data for testing purposes.")
+                        # Force mock data
+                        mock_text = extractor._get_mock_bill_text()
+                        data = extractor.extract_bill_data(mock_text)
+                        st.info("Demo data loaded. In production, this would extract from the actual bill image.")
+                    else:
+                        st.success("Data extraction complete!")
+                    
                     st.session_state.extracted_data = data
-                    st.success("Data extraction complete!")
-                except Exception as e:
-                    st.error(f"Error during extraction: {e}")
                 finally:
                     if os.path.exists(tmp_path):
                         os.remove(tmp_path)
